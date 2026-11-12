@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setAccessibilityHeading(findViewById(R.id.scannerHeading), true);
 
         preview = findViewById(R.id.previewView);
+        findViewById(R.id.cameraViewport).setClipToOutline(true);
         preview.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE);
         frame = findViewById(R.id.scanFrame);
         cameraPanel = findViewById(R.id.cameraPanel);

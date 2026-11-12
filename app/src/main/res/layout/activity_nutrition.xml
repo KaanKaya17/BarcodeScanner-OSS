@@ -39,7 +39,6 @@
                 android:layout_height="96dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/photo_card"
-                android:clipToOutline="true"
                 android:importantForAccessibility="no"
                 android:scaleType="fitCenter"
                 android:visibility="gone" />
@@ -80,7 +79,6 @@
                     android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                     android:textColor="@color/scanner_accent"
                     android:visibility="gone" />
-
             </LinearLayout>
         </LinearLayout>
 

@@ -73,6 +73,7 @@ public class NutritionActivity extends AppCompatActivity {
 
         ScreenInsets.enable(this);
         setContentView(R.layout.activity_nutrition);
+        findViewById(R.id.productPhoto).setClipToOutline(true);
         ScreenInsets.applyTo(findViewById(R.id.nutritionRoot));
         ViewCompat.setAccessibilityHeading(findViewById(R.id.tvProductName), true);
         ViewCompat.setAccessibilityHeading(findViewById(R.id.tvNutritionHeading), true);
