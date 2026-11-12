@@ -6,6 +6,16 @@ BarcodeScanner is an Android app that looks up packaged foods in [Open Food Fact
 
 The repository includes a reusable barcode lookup API with optional additional providers. The hosted catalog currently serves Open Food Facts and is available to try without an API key. [Integration guide](docs/integration.md#english-quick-start) · [OpenAPI](https://barcodescanner-catalog.onrender.com/v1/openapi.json)
 
+## Screenshots
+
+<p>
+  <img src="docs/images/scan-en.png" width="220" alt="BarcodeScanner camera scanner with manual and photo entry">
+  <img src="docs/images/product-en.png" width="220" alt="Product details and nutrition information for a sample barcode">
+  <img src="docs/images/history-en.png" width="220" alt="Searchable scan history with a sample product">
+</p>
+
+The screenshots use a public sample product. Its photo is credited to Open Food Facts contributors under CC BY-SA. [Source product](https://world.openfoodfacts.org/product/3017620422003)
+
 ## Features
 
 - Camera scanning for EAN-13, EAN-8, UPC-A and UPC-E, with a flashlight on supported devices. Manual entry accepts 8, 12, 13 and 14 digits.

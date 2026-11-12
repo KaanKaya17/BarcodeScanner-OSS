@@ -6,6 +6,16 @@ BarcodeScanner, ambalajlı gıdaların bilgilerini [Open Food Facts](https://wor
 
 Depodaki barkod API’si başka uygulamalardan da çağrılabilir ve isteğe bağlı ek kaynakları destekler. Canlı katalog şu anda Open Food Facts’i kullanıyor ve API anahtarı girmeden denenebilir. [Entegrasyon kılavuzu](integration.md) · [OpenAPI](https://barcodescanner-catalog.onrender.com/v1/openapi.json)
 
+## Ekran görüntüleri
+
+<p>
+  <img src="images/scan-tr.png" width="220" alt="Kamera, fotoğraf ve elle barkod girişi seçenekleri">
+  <img src="images/product-tr.png" width="220" alt="Örnek barkod için ürün bilgisi ve besin değerleri">
+  <img src="images/history-tr.png" width="220" alt="Örnek ürünün yer aldığı aranabilir tarama geçmişi">
+</p>
+
+Ekran görüntülerinde herkese açık bir örnek ürün kullanıldı. Ürün fotoğrafı Open Food Facts katkıcılarına aittir ve CC BY-SA kapsamında kullanılmıştır. [Kaynak ürün](https://world.openfoodfacts.org/product/3017620422003)
+
 ## Özellikler
 
 - EAN-13, EAN-8, UPC-A ve UPC-E tarama. Desteklenen cihazlarda fener, ayrıca 8, 12, 13 veya 14 rakamlı barkodları elle girme.
