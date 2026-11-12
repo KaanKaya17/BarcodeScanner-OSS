@@ -23,11 +23,11 @@
             android:textColor="@color/scanner_text" />
 
         <FrameLayout
+            android:id="@+id/cameraViewport"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:layout_marginTop="18dp"
-            android:background="@drawable/camera_card"
-            android:clipToOutline="true">
+            android:background="@drawable/camera_card">
 
             <androidx.camera.view.PreviewView
                 android:id="@+id/previewView"
