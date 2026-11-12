@@ -25,7 +25,7 @@
     <string name="invalid_response">The product service returned unreadable data.</string>
     <string name="history">History</string>
     <string name="empty_history">No saved products yet.</string>
-    <string name="history_item">%1$s\n%2$s · %3$s</string>
+    <string name="history_details">%1$s · %2$s</string>
     <string name="clear_history">Clear history</string>
     <string name="language">Language</string>
     <string name="unknown_product">Unknown product</string>
@@ -93,7 +93,7 @@
     <string name="no_favorites">No favorites yet.</string>
     <string name="favorite_add">Add to favorites</string>
     <string name="favorite_remove">Remove favorite</string>
-    <string name="history_search">Search name, brand or barcode</string>
+    <string name="history_search">Name, brand or barcode</string>
     <string name="no_matching_records">No matching records.</string>
     <string name="clear_history_keep_saved">Delete recent lookups from this device? Favorites and package values will stay available.</string>
     <string name="scan_photo">Scan a photo</string>

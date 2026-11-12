@@ -1,21 +1,42 @@
 <resources>
-    <style name="Theme.BarcodeScanner" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.BarcodeScanner" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/scanner_accent</item>
         <item name="colorOnPrimary">@color/scanner_on_accent</item>
+        <item name="colorSecondary">@color/scanner_accent</item>
+        <item name="colorOnSecondary">@color/scanner_on_accent</item>
+        <item name="colorPrimaryContainer">@color/scanner_accent_container</item>
+        <item name="colorOnPrimaryContainer">@color/scanner_on_accent_container</item>
+        <item name="colorSecondaryContainer">@color/scanner_accent_container</item>
+        <item name="colorOnSecondaryContainer">@color/scanner_on_accent_container</item>
+        <item name="colorSurfaceContainerHigh">@color/scanner_dialog</item>
+        <item name="colorSurfaceContainerHighest">@color/scanner_subtle</item>
+        <item name="colorOutlineVariant">@color/scanner_line</item>
+        <item name="textInputStyle">@style/Widget.Material3.TextInputLayout.OutlinedBox</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.BarcodeScanner.Dialog</item>
         <item name="colorSurface">@color/scanner_surface</item>
         <item name="colorOnSurface">@color/scanner_text</item>
         <item name="colorOnSurfaceVariant">@color/scanner_muted</item>
         <item name="colorOutline">@color/scanner_outline</item>
         <item name="android:colorBackground">@color/scanner_background</item>
         <item name="android:windowBackground">@color/scanner_background</item>
-        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="ThemeOverlay.BarcodeScanner.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="backgroundTint">@color/scanner_dialog</item>
+    </style>
+
+    <style name="ScannerSecondaryAction" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">54dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.LabelLarge</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconPadding">8dp</item>
     </style>
 
     <style name="NutritionRow">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:minHeight">52dp</item>
+        <item name="android:minHeight">49dp</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingHorizontal">16dp</item>
         <item name="android:paddingVertical">8dp</item>

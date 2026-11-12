@@ -42,8 +42,8 @@ android {
         applicationId = "com.example.barcodescanner"
         minSdk = 26
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.2.1"
+        versionCode = 5
+        versionName = "1.3.0"
         buildConfigField("String", "CATALOG_BASE_URL", buildStringLiteral(catalogBase))
         buildConfigField("String", "CATALOG_REGION", buildStringLiteral(catalogRegion))
 

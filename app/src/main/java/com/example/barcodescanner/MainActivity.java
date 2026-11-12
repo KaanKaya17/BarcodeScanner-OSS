@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,9 @@ import androidx.core.content.ContextCompat;
 import androidx.core.os.LocaleListCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -96,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setAccessibilityHeading(findViewById(R.id.scannerHeading), true);
 
         preview = findViewById(R.id.previewView);
+        preview.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE);
         frame = findViewById(R.id.scanFrame);
         cameraPanel = findViewById(R.id.cameraPanel);
         cameraStatus = findViewById(R.id.cameraStatus);
@@ -399,7 +404,7 @@ public class MainActivity extends AppCompatActivity {
         } else if (codes.size() == 1) {
             model.submit(codes.get(0));
         } else {
-            new AlertDialog.Builder(this).setTitle(R.string.photo_choose_barcode)
+            new MaterialAlertDialogBuilder(this).setTitle(R.string.photo_choose_barcode)
                     .setItems(codes.toArray(new String[0]), (dialog, which) -> model.submit(codes.get(which)))
                     .setNegativeButton(R.string.cancel, null)
                     .show();
@@ -407,18 +412,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showManualEntry() {
-        EditText input = new EditText(this);
-        input.setSingleLine(true);
-        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        LinearLayout content = DialogForm.content(this);
+        TextInputLayout field = DialogForm.addField(content, getString(R.string.barcode_hint), InputType.TYPE_CLASS_NUMBER);
+        EditText input = field.getEditText();
         input.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-        input.setHint(R.string.barcode_hint);
-        FrameLayout wrapper = new FrameLayout(this);
-        wrapper.setPadding(dp(24), dp(8), dp(24), 0);
-        wrapper.addView(input, new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT));
-        AlertDialog dialog = new AlertDialog.Builder(this)
+        AlertDialog dialog = new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.manual_entry)
-                .setView(wrapper)
+                .setView(DialogForm.scroll(content))
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.search, null)
                 .create();
@@ -430,7 +430,7 @@ public class MainActivity extends AppCompatActivity {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
                 String barcode = BarcodeValue.normalize(input.getText().toString());
                 if (barcode == null) {
-                    input.setError(getString(R.string.invalid_barcode));
+                    field.setError(getString(R.string.invalid_barcode));
                 } else {
                     dialog.dismiss();
                     model.submit(barcode);
@@ -456,7 +456,7 @@ public class MainActivity extends AppCompatActivity {
             }));
         }
         RecordPicker.show(this, R.string.history, R.string.empty_history, entries,
-                () -> new AlertDialog.Builder(this)
+                () -> new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.clear_history)
                         .setMessage(R.string.clear_history_keep_saved)
                         .setNegativeButton(R.string.cancel, null)
@@ -493,7 +493,7 @@ public class MainActivity extends AppCompatActivity {
         String fallback = getString(R.string.unknown_product);
         String name = product == null ? fallback : product.name(locale, fallback);
         String brand = product != null && Product.hasText(product.brands) ? product.brands : "";
-        return new RecordPicker.Entry(getString(R.string.history_item, name, barcode, date.format(new Date(savedAt))),
+        return new RecordPicker.Entry(name, getString(R.string.history_details, barcode, date.format(new Date(savedAt))),
                 name + " " + brand + " " + barcode, open);
     }
 
@@ -501,7 +501,7 @@ public class MainActivity extends AppCompatActivity {
         String[] tags = {"", "tr", "en"};
         String active = AppCompatDelegate.getApplicationLocales().toLanguageTags();
         int selection = active.startsWith("tr") ? 1 : active.startsWith("en") ? 2 : 0;
-        new AlertDialog.Builder(this)
+        new MaterialAlertDialogBuilder(this)
                 .setTitle(R.string.language)
                 .setSingleChoiceItems(R.array.language_options, selection, (dialog, index) -> {
                     dialog.dismiss();

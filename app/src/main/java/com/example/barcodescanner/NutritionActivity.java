@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.IntentCompat;
 import androidx.core.view.ViewCompat;
@@ -24,6 +23,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.DateFormat;
@@ -272,7 +272,7 @@ public class NutritionActivity extends AppCompatActivity {
                 sourceName(product), getString(product.usesMilliliters() ? R.string.label_basis_ml
                         : product.hasKnownBasis() ? R.string.label_basis_grams : R.string.nutrition_basis_unknown)))
                 .toArray(String[]::new);
-        new AlertDialog.Builder(this).setTitle(R.string.select_source)
+        new MaterialAlertDialogBuilder(this).setTitle(R.string.select_source)
                 .setSingleChoiceItems(items, available.indexOf(selected), (dialog, position) -> {
                     select(available.get(position));
                     dialog.dismiss();

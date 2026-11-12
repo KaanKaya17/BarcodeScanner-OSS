@@ -25,7 +25,7 @@
     <string name="invalid_response">Ürün servisinden gelen veri okunamadı.</string>
     <string name="history">Geçmiş</string>
     <string name="empty_history">Henüz kayıtlı ürün yok.</string>
-    <string name="history_item">%1$s\n%2$s · %3$s</string>
+    <string name="history_details">%1$s · %2$s</string>
     <string name="clear_history">Geçmişi temizle</string>
     <string name="language">Dil</string>
     <string name="unknown_product">Bilinmeyen ürün</string>
@@ -93,7 +93,7 @@
     <string name="no_favorites">Henüz favori yok.</string>
     <string name="favorite_add">Favorilere ekle</string>
     <string name="favorite_remove">Favoriden çıkar</string>
-    <string name="history_search">Ürün adı, marka veya barkod ara</string>
+    <string name="history_search">Ürün, marka veya barkod</string>
     <string name="no_matching_records">Eşleşen kayıt yok.</string>
     <string name="clear_history_keep_saved">Cihazdaki son sorgular silinsin mi? Favoriler ve ambalajdan girdiğin değerler saklanır.</string>
     <string name="scan_photo">Fotoğraftan tara</string>

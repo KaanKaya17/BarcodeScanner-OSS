@@ -1,10 +1,17 @@
 <resources>
-    <color name="scanner_background">#10141A</color>
-    <color name="scanner_surface">#1D242F</color>
-    <color name="scanner_preview">#0B0E13</color>
-    <color name="scanner_text">#F1F5FA</color>
-    <color name="scanner_muted">#B9C6D4</color>
-    <color name="scanner_accent">#A7E8CB</color>
-    <color name="scanner_on_accent">#0B3526</color>
-    <color name="scanner_outline">#8295A6</color>
+    <color name="scanner_background">#F4F8F7</color>
+    <color name="scanner_surface">#FFFFFF</color>
+    <color name="scanner_subtle">#E8F1EE</color>
+    <color name="scanner_dialog">#FFFFFF</color>
+    <color name="scanner_preview">#142A25</color>
+    <color name="scanner_text">#172A25</color>
+    <color name="scanner_muted">#4B625A</color>
+    <color name="scanner_accent">#006B54</color>
+    <color name="scanner_on_accent">#FFFFFF</color>
+    <color name="scanner_outline">#6D837A</color>
+    <color name="scanner_line">#D3E2DC</color>
+    <color name="scanner_accent_container">#C8F0E2</color>
+    <color name="scanner_on_accent_container">#053D2F</color>
+    <color name="scanner_scan_ring">#C1F8DF</color>
+    <color name="scanner_preview_text">#E1F1E9</color>
 </resources>

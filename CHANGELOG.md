@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.0
+
+- Refreshed the scanner and product screens with clearer actions, more space and system light and dark themes.
+- Updated history, favorites, manual barcode entry, catalog settings and package-label dialogs to Material 3.
+
 ## 1.2.1
 
 - Keep barcode-only history entries when a lookup has no result or product details cannot be stored offline. Tap an entry to retry.

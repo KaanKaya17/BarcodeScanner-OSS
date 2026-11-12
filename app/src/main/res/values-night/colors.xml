@@ -1,0 +1,17 @@
+<resources>
+    <color name="scanner_background">#111C19</color>
+    <color name="scanner_surface">#1A2823</color>
+    <color name="scanner_subtle">#22342D</color>
+    <color name="scanner_dialog">#24352E</color>
+    <color name="scanner_preview">#0C1713</color>
+    <color name="scanner_text">#E9F5EF</color>
+    <color name="scanner_muted">#AEC7BC</color>
+    <color name="scanner_accent">#89DEC2</color>
+    <color name="scanner_on_accent">#06382B</color>
+    <color name="scanner_outline">#89A398</color>
+    <color name="scanner_line">#354A41</color>
+    <color name="scanner_accent_container">#224B3E</color>
+    <color name="scanner_on_accent_container">#C1F8DF</color>
+    <color name="scanner_scan_ring">#C1F8DF</color>
+    <color name="scanner_preview_text">#E1F1E9</color>
+</resources>

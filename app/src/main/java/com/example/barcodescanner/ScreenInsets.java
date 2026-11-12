@@ -14,8 +14,8 @@ final class ScreenInsets {
     private ScreenInsets() {}
 
     static void enable(ComponentActivity activity) {
-        SystemBarStyle dark = SystemBarStyle.dark(Color.TRANSPARENT);
-        EdgeToEdge.enable(activity, dark, dark);
+        SystemBarStyle bars = SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT);
+        EdgeToEdge.enable(activity, bars, bars);
     }
 
     static void applyTo(View root) {
