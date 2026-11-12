@@ -1,0 +1,414 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "BarcodeScanner API",
+    "version": "1.0.0",
+    "description": "Exact barcode lookups with source attribution and separate nutrition records."
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "Server ready"
+          }
+        }
+      }
+    },
+    "/v1/products/{barcode}": {
+      "get": {
+        "operationId": "lookupProduct",
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "barcode",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^(?:[0-9]{8}|[0-9]{12,14})$"
+            },
+            "description": "EAN-8, UPC-A, EAN-13 or GTIN-14 as a string. Expand UPC-E before lookup."
+          },
+          {
+            "in": "query",
+            "name": "region",
+            "schema": {
+              "type": "string",
+              "default": "TR",
+              "pattern": "^[A-Za-z]{2}$"
+            },
+            "description": "Two-letter market code. Open Food Facts searches its global catalog."
+          },
+          {
+            "in": "query",
+            "name": "compare",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            },
+            "description": "Query all applicable providers even when the first result is complete."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Product found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Lookup"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid lookup",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid API token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Product absent from the queried sources",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Server busy or lookup rate limit reached",
+            "headers": {
+              "Retry-After": {
+                "schema": { "type": "integer", "minimum": 1 },
+                "description": "Seconds to wait before retrying"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Lookup incomplete because a provider failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Required only if the operator sets BARCODE_API_TOKEN."
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderStatus"
+            }
+          }
+        }
+      },
+      "Lookup": {
+        "type": "object",
+        "required": [
+          "barcode",
+          "region",
+          "product",
+          "alternatives",
+          "comparisons",
+          "sources"
+        ],
+        "properties": {
+          "barcode": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string"
+          },
+          "product": {
+            "$ref": "#/components/schemas/Product"
+          },
+          "alternatives": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Product"
+            }
+          },
+          "comparisons": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "kind",
+                "sources",
+                "fields"
+              ],
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "values_differ",
+                    "different_basis"
+                  ]
+                },
+                "sources": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2
+                },
+                "fields": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ProviderStatus"
+            }
+          }
+        }
+      },
+      "ProviderStatus": {
+        "type": "object",
+        "required": [
+          "id",
+          "status"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "found",
+              "not_found",
+              "not_applicable",
+              "skipped",
+              "rate_limited",
+              "unavailable"
+            ]
+          }
+        }
+      },
+      "Product": {
+        "type": "object",
+        "required": [
+          "source",
+          "product_quantity_unit",
+          "nutriments"
+        ],
+        "properties": {
+          "product_name": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "product_name_en": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "product_name_tr": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "brands": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "image_front_small_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri"
+          },
+          "product_quantity_unit": {
+            "enum": [
+              "g",
+              "ml",
+              null
+            ],
+            "description": "Basis for the per-100 values. Null means mass or volume is unconfirmed."
+          },
+          "nutriments": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "description": "Numeric values per 100 g or 100 mL. Energy is kcal. Other fields are grams of the nutrient. Missing data are null.",
+            "properties": {
+              "energy-kcal_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "proteins_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "fat_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "carbohydrates_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "sugars_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "fiber_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "salt_100g": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "id",
+              "name",
+              "cacheable"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "label_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "updated_at": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "date-time"
+              },
+              "market": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "cacheable": {
+                "type": "boolean"
+              },
+              "attribution_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              },
+              "terms_url": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "format": "uri"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

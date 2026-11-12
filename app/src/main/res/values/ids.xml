@@ -1,0 +1,6 @@
+<resources>
+    <item name="recordSearch" type="id" />
+    <item name="recordList" type="id" />
+    <item name="catalogAddress" type="id" />
+    <item name="catalogRegion" type="id" />
+</resources>

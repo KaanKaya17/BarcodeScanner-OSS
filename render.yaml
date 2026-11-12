@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: barcodescanner-catalog
+    runtime: node
+    plan: free
+    region: frankfurt
+    branch: master
+    rootDir: api
+    buildCommand: npm test
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: NODE_VERSION
+        value: "22.x"
+      - key: SKIP_INSTALL_DEPS
+        value: "true"
+      - key: HOST
+        value: 0.0.0.0
+      - key: BARCODE_API_REQUESTS_PER_MINUTE
+        value: "60"

@@ -1,0 +1,10 @@
+<resources>
+    <color name="scanner_background">#10141A</color>
+    <color name="scanner_surface">#1D242F</color>
+    <color name="scanner_preview">#0B0E13</color>
+    <color name="scanner_text">#F1F5FA</color>
+    <color name="scanner_muted">#B9C6D4</color>
+    <color name="scanner_accent">#A7E8CB</color>
+    <color name="scanner_on_accent">#0B3526</color>
+    <color name="scanner_outline">#8295A6</color>
+</resources>

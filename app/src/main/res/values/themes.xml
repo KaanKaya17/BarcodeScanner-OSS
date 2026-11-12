@@ -1,0 +1,39 @@
+<resources>
+    <style name="Theme.BarcodeScanner" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/scanner_accent</item>
+        <item name="colorOnPrimary">@color/scanner_on_accent</item>
+        <item name="colorSurface">@color/scanner_surface</item>
+        <item name="colorOnSurface">@color/scanner_text</item>
+        <item name="colorOnSurfaceVariant">@color/scanner_muted</item>
+        <item name="colorOutline">@color/scanner_outline</item>
+        <item name="android:colorBackground">@color/scanner_background</item>
+        <item name="android:windowBackground">@color/scanner_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="NutritionRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">8dp</item>
+    </style>
+
+    <style name="NutritionLabel" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:textColor">@color/scanner_text</item>
+    </style>
+
+    <style name="NutritionValue" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">end</item>
+        <item name="android:textColor">@color/scanner_muted</item>
+    </style>
+</resources>
