@@ -96,6 +96,7 @@ for language in ("tr", "en"):
     time.sleep(7)
     capture(f"scan-{language}")
     lookup(language)
+    time.sleep(5)
     capture(f"product-{language}")
     if language == "tr":
         tap(by_id("btnEditLabel"))
