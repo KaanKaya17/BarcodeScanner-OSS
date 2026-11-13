@@ -101,6 +101,7 @@
     <string name="photo_no_barcode">No supported barcode was found in the photo.</string>
     <string name="photo_error">Could not read the selected photo.</string>
     <string name="photo_choose_barcode">Choose a barcode</string>
+    <string name="catalog_short">Catalog</string>
     <string name="catalog_settings">Catalog server</string>
     <string name="catalog_help">Enter a catalog API address and market. Leave the address blank to use Open Food Facts directly.</string>
     <string name="catalog_address">HTTPS API address</string>
