@@ -101,6 +101,7 @@
     <string name="photo_no_barcode">Fotoğrafta desteklenen bir barkod bulunamadı.</string>
     <string name="photo_error">Seçilen fotoğraf okunamadı.</string>
     <string name="photo_choose_barcode">Barkod seç</string>
+    <string name="catalog_short">Katalog</string>
     <string name="catalog_settings">Katalog sunucusu</string>
     <string name="catalog_help">Katalog API adresini ve pazar kodunu gir. Open Food Facts’e doğrudan bağlanmak için adresi boş bırak.</string>
     <string name="catalog_address">HTTPS API adresi</string>
