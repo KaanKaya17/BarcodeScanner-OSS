@@ -1,10 +1,8 @@
 # BarcodeScanner
 
-[**Türkçe**](docs/README.tr.md) · [**Download on GitHub Releases**](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest)
+[**Türkçe**](docs/README.tr.md) · [**Download for Android**](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest) · [**Catalog API**](#catalog-api)
 
-BarcodeScanner is an Android app that looks up packaged foods in [Open Food Facts](https://world.openfoodfacts.org/). Point the camera at a barcode or enter the digits by hand to view nutrition facts and calculate values for a portion.
-
-The repository includes a reusable barcode lookup API with optional additional providers. The hosted catalog currently serves Open Food Facts and is available to try without an API key. [Integration guide](docs/integration.md#english-quick-start) · [OpenAPI](https://barcodescanner-catalog.onrender.com/v1/openapi.json)
+BarcodeScanner looks up packaged foods on Android. Scan with the camera, select a photo from your gallery, or enter the barcode manually to view nutrition facts and calculate values for a portion. Lookups use [Open Food Facts](https://world.openfoodfacts.org/) by default.
 
 ## Screenshots
 
@@ -30,6 +28,18 @@ The screenshots use a public sample product. Its photo is credited to Open Food 
 ## Install
 
 Requires Android 8.0 (API 26) or newer. Download the signed APK from GitHub Releases. Open the app and scan a barcode to start. A previous local build signed with a different key requires a fresh install. [Download](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest)
+
+## Catalog API
+
+The Node.js catalog can serve Android, web, or backend clients. Try a public Open Food Facts lookup or run the catalog locally with Node.js 22 or newer.
+
+```sh
+npm --prefix api start
+```
+
+To use your own catalog in the Android app, open **Catalog server** and enter its HTTPS address and market code. Clear the address to return to direct Open Food Facts lookups.
+
+[Try a lookup](https://barcodescanner-catalog.onrender.com/v1/products/3017620422003?region=TR&compare=true) · [OpenAPI contract](api/openapi.json) · [Integration and hosting](docs/integration.md#english-quick-start)
 
 ## Develop
 

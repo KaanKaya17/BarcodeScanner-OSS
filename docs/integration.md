@@ -18,7 +18,7 @@ npm --prefix api start
 curl "http://127.0.0.1:8787/v1/products/3017620422003?region=TR&compare=true"
 ```
 
-`GET /health` servisin ayakta olup olmadığını, `GET /v1/openapi.json` ise OpenAPI sözleşmesini verir. Ürün uç noktası EAN-8, UPC-A, EAN-13 ve GTIN-14 kabul eder. UPC-E kodlarını önce UPC-A'ya genişlet. Varsayılan pazar Türkiye (`TR`).
+`GET /health` servisin ayakta olup olmadığını, `GET /v1/openapi.json` ise OpenAPI sözleşmesini verir. API testlerini depo kökünde `npm --prefix api test` ile çalıştırabilirsin. Ürün uç noktası EAN-8, UPC-A, EAN-13 ve GTIN-14 kabul eder. UPC-E kodlarını önce UPC-A'ya genişlet. Varsayılan pazar Türkiye (`TR`).
 
 - `product` önerilen kaydı, `alternatives` aynı barkod için diğer kayıtları, `sources` ise sağlayıcıların sorgu sonucunu taşır.
 - İlk kayıt eksikse servis sıradaki uygun kaynağı sorgular. `compare=true` tüm uygun kaynakları sorgular. Servis, ölçü birimi belirli tabloların dolu alanlarını sayıp en dolu tabloyu seçer. Eşitlikte sağlayıcı sırası korunur.
@@ -72,7 +72,14 @@ Sunucu varsayılan olarak `127.0.0.1:8787` üzerinde dinler. `HOST` ve `PORT` da
 
 ## English quick start
 
-Run `npm --prefix api start` with Node.js 22+. Call `GET /v1/products/{barcode}?region=TR&compare=true` and import [OpenAPI](../api/openapi.json) into your client tooling. The service returns a primary product, alternative records, provider status, and discrepancies. Use the product's source, update date, and basis when displaying values. Missing values are null. Preserve provider attribution and observe each source's caching rules.
+Run the following commands from the repository root with Node.js 22 or newer.
+
+```sh
+npm --prefix api test
+npm --prefix api start
+```
+
+The local API listens on `http://127.0.0.1:8787`. Call `GET /v1/products/{barcode}?region=TR&compare=true` and import the [OpenAPI contract](../api/openapi.json) into your client tooling. Pass the barcode as a string to preserve leading zeros. The service returns a primary product, alternative records, provider status, and discrepancies. Use the product's source, update date, and basis when displaying values. Missing values are null. Preserve provider attribution and observe each source's caching rules.
 
 Open Food Facts is available by default. USDA requires `USDA_API_KEY` and a US or NZ lookup. FatSecret requires server-side credentials, licensed applications and enabled markets. See the provider links above. Enter the address in Android under **Catalog server**, or set `-PbarcodeApiBaseUrl=https://api.example.com/` at build time.
 

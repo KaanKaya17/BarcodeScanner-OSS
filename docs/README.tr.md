@@ -1,10 +1,8 @@
 # BarcodeScanner
 
-[**English**](../README.md) · [**GitHub’dan indir**](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest)
+[**English**](../README.md) · [**Android için indir**](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest) · [**Katalog API’si**](#katalog-apisi)
 
-BarcodeScanner, ambalajlı gıdaların bilgilerini [Open Food Facts](https://world.openfoodfacts.org/) üzerinden sorgulayan bir Android uygulamasıdır. Barkodu kameraya göstererek veya rakamları elle girerek besin değerlerini görebilir, porsiyon miktarına göre hesaplayabilirsin.
-
-Depodaki barkod API’si başka uygulamalardan da çağrılabilir ve isteğe bağlı ek kaynakları destekler. Canlı katalog şu anda Open Food Facts’i kullanıyor ve API anahtarı girmeden denenebilir. [Entegrasyon kılavuzu](integration.md) · [OpenAPI](https://barcodescanner-catalog.onrender.com/v1/openapi.json)
+BarcodeScanner ile Android’de ambalajlı gıdaların besin değerlerine bakabilir ve porsiyon miktarına göre hesaplama yapabilirsin. Barkodu kamerayla tara, galeriden bir fotoğraf seç veya rakamları elle gir. Uygulama varsayılan olarak [Open Food Facts](https://world.openfoodfacts.org/) kullanır.
 
 ## Ekran görüntüleri
 
@@ -30,6 +28,18 @@ Ekran görüntülerinde herkese açık bir örnek ürün kullanıldı. Ürün fo
 ## Kurulum
 
 Android 8.0 (API 26) veya üzeri gerekir. GitHub Releases üzerinden imzalı APK’yı indirip taramaya başlayabilirsin. Cihazdaki önceki yerel derleme farklı bir anahtarla imzalandıysa temiz kurulum gerekir. [APK’yı indir](https://github.com/KaanKaya17/BarcodeScanner-OSS/releases/latest)
+
+## Katalog API'si
+
+Node.js ile çalışan katalog Android, web ve sunucu uygulamalarından çağrılabilir. Herkese açık örnek sorguyu deneyebilir veya Node.js 22 ve üzeriyle kataloğu yerelde çalıştırabilirsin.
+
+```sh
+npm --prefix api start
+```
+
+Android uygulamasında kendi kataloğunu kullanmak için **Katalog sunucusu** menüsüne HTTPS adresini ve pazar kodunu gir. Open Food Facts’e doğrudan bağlanmak için adresi temizle.
+
+[Örnek sorgu](https://barcodescanner-catalog.onrender.com/v1/products/3017620422003?region=TR&compare=true) · [OpenAPI sözleşmesi](../api/openapi.json) · [Entegrasyon ve dağıtım](integration.md)
 
 ## Geliştirme
 
